@@ -52,7 +52,7 @@ const handleTotalYieldChange = (e) => {
 
     try {
       const responseData = await postMeasurement(data); 
-      console.log('Data submitted successfully');
+      alert('Data submitted successfully');
       onSubmit(responseData);
     } catch (error) {
       console.error('Failed to submit data:', error);
