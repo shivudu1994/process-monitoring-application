@@ -10,6 +10,8 @@ These instructions will help you set up and run the Process Control App on your 
 
 - Node.js and npm (Node Package Manager) installed on your machine.
 - MongoDB installed and running on your machine.
+	- Install and set up MongoDB according to your operating system. Visit the [MongoDB Installation Documentation](https://docs.mongodb.com/manual/administration/install-community/) for detailed instructions. 
+	- Create a database named `process-control-db`.
 
 ### Clone Github Repository
     git clone https://github.com/shivudu1994/process-monitoring-application.git
@@ -47,7 +49,3 @@ The back-end server should now be running at `http://localhost:PORT_NUMBER`.
 ### Accessing the Application
 
 Open your web browser and navigate to `http://localhost:3000` to access the Process Control App.
-
-
-    
-
