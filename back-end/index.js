@@ -43,6 +43,14 @@ app.post('/api/measurements', async (req, res) => {
   }
 });
 
+app.get('/api/measurements', async (req, res) => {
+    try {
+      const measurements = await Measurement.find().sort({ date: -1 });
+      res.status(200).json(measurements);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to get measurements' });
+    }
+  });
 
   app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
