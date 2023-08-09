@@ -39,6 +39,7 @@ function ProcessControlApp() {
       </header>
       <div className="process-control-app">
         <div className="sidebar">
+          {/* Sidebar content */}
         </div>
         <div className="content">
           {displayMeasurements ? (
