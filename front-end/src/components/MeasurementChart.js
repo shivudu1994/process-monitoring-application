@@ -24,6 +24,22 @@ function MeasurementChart({ measurements }) {
             mode: 'lines+markers',
             name: 'Exclusion Limit',
           },
+          {
+            type: 'line',
+            x: dates,
+            y: Array(dates.length).fill(meanTotalYield + standardDeviation),
+            mode: 'lines',
+            name: '1σ Upper',
+            line: { dash: 'dash' },
+          },
+          {
+            type: 'line',
+            x: dates,
+            y: Array(dates.length).fill(meanTotalYield - standardDeviation),
+            mode: 'lines',
+            name: '1σ Lower',
+            line: { dash: 'dash' },
+          },
         ]}
         layout={{
           title: 'Exclusion Limit Chart',
@@ -45,6 +61,22 @@ function MeasurementChart({ measurements }) {
             mode: 'lines+markers',
             name: 'Flow Specification',
           },
+          {
+            type: 'line',
+            x: dates,
+            y: Array(dates.length).fill(meanTotalYield + standardDeviation),
+            mode: 'lines',
+            name: '1σ Upper',
+            line: { dash: 'dash' },
+          },
+          {
+            type: 'line',
+            x: dates,
+            y: Array(dates.length).fill(meanTotalYield - standardDeviation),
+            mode: 'lines',
+            name: '1σ Lower',
+            line: { dash: 'dash' },
+          },
         ]}
         layout={{
           title: 'Flow Specification Chart',
@@ -65,6 +97,22 @@ function MeasurementChart({ measurements }) {
             type: 'scatter',
             mode: 'lines+markers',
             name: 'Ionic Capacity',
+          },
+          {
+            type: 'line',
+            x: dates,
+            y: Array(dates.length).fill(meanTotalYield + standardDeviation),
+            mode: 'lines',
+            name: '1σ Upper',
+            line: { dash: 'dash' },
+          },
+          {
+            type: 'line',
+            x: dates,
+            y: Array(dates.length).fill(meanTotalYield - standardDeviation),
+            mode: 'lines',
+            name: '1σ Lower',
+            line: { dash: 'dash' },
           },
         ]}
         layout={{
