@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import RecordForm from './RecordForm';
 import MeasurementChart from './MeasurementChart';
 import './process-control-app.css';
+import { fetchMeasurements } from './api';
 
 function ProcessControlApp() {
   const [displayMeasurements, setDisplayMeasurements] = useState(false);
@@ -12,8 +13,7 @@ function ProcessControlApp() {
   };
 
   useEffect(() => {
-    fetch('http://localhost:5005/api/measurements')
-      .then((response) => response.json())
+    fetchMeasurements()
       .then((data) => setMeasurements(data))
       .catch((error) => console.error('Failed to fetch measurements:', error));
   }, []);
@@ -39,7 +39,6 @@ function ProcessControlApp() {
       </header>
       <div className="process-control-app">
         <div className="sidebar">
-          {/* Sidebar content */}
         </div>
         <div className="content">
           {displayMeasurements ? (

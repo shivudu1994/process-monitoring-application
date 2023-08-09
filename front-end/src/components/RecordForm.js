@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './RecordForm.css';
+import { postMeasurement } from './api';
 
 function RecordForm({ onSubmit }) {
   const [exclusionLimit, setExclusionLimit] = useState(0);
@@ -50,22 +51,11 @@ const handleTotalYieldChange = (e) => {
     };
 
     try {
-      const response = await fetch('http://localhost:5005/api/measurements', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        console.log('Data submitted successfully');
-        onSubmit(data);
-      } else {
-        console.error('Failed to submit data');
-      }
+      const responseData = await postMeasurement(data); 
+      console.log('Data submitted successfully');
+      onSubmit(responseData);
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error('Failed to submit data:', error);
     }
   };
 
