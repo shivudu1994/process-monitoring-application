@@ -1,14 +1,14 @@
+require('dotenv').config();  // Load environment variables from .env file
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const PORT = 5001;
 const cors = require('cors');
+const measurementsRouter = require('./routes/measurements');  // Import the measurements router
 
 app.use(express.json());
 app.use(cors());
 
-
-mongoose.connect('mongodb://localhost:27017/process-monitoring-db', {
+mongoose.connect(process.env.MONGO_DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -20,39 +20,8 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
+app.use('/api/measurements', measurementsRouter);  // Use the measurements router for API routes
 
-const measurementSchema = new mongoose.Schema({
-  exclusionLimit: { type: Number, default: 0 },
-  flowSpecification: { type: Number, default: 0.01 },
-  ionicCapacity: { type: Number, default: 0 },
-  particleCount: { type: Number, default: 0 },
-  avgParticleRadius: { type: Number, default: 0 },
-  totalYield: { type: Number, default: 0 },
-  date: { type: Date, default: Date.now },
+app.listen(process.env.PORT, () => {
+  console.log(`Server running on http://localhost:${process.env.PORT}`);
 });
-
-const Measurement = mongoose.model('Measurement', measurementSchema);
-
-app.post('/api/measurements', async (req, res) => {
-  try {
-    const newMeasurement = new Measurement(req.body);
-    await newMeasurement.save();
-    res.status(201).json(newMeasurement);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to store measurement' });
-  }
-});
-
-app.get('/api/measurements', async (req, res) => {
-    try {
-      const measurements = await Measurement.find().sort({ date: -1 });
-      res.status(200).json(measurements);
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to get measurements' });
-    }
-  });
-
-  app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-  });
-
